@@ -27,7 +27,6 @@ jobs:
           TAG=${{ github.sha }}
           IMAGE="$ACR_LOGIN/$IMAGE_NAME:$TAG"
           docker build -t "$IMAGE" flask-app/.
-          echo "Built Done"
           docker push "$IMAGE"
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
