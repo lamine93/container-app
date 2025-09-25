@@ -21,7 +21,12 @@ jobs:
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+      
+      - name: ACR Login with token
+        run: |
+          TOKEN=$(az acr login --name "$ACR" --expose-token --output tsv --query accessToken)
+          echo "${TOKEN}" | docker login "$ACR_LOGIN" --username 00000000-0000-0000-0000-000000000000 --password-stdin
+          
       - name: Who am I?
         run: az account show -o table
 
