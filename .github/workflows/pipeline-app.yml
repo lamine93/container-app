@@ -26,7 +26,7 @@ jobs:
         run: |
           TAG=${{ github.sha }}
           IMAGE="$ACR_LOGIN/$IMAGE_NAME:$TAG"
-          docker build -t "$IMAGE" container-app
+          docker build -t "$IMAGE" .
           docker push "$IMAGE"
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
